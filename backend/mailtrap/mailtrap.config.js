@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Nodemailer from 'nodemailer';
 import { MailtrapTransport } from 'mailtrap';
 import dotenv from 'dotenv';
