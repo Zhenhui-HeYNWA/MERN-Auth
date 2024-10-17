@@ -6,11 +6,15 @@ const EmailVerification = () => {
   const inputRefs = useRef([]);
   const nvavigate = useNavigate();
   const isLoading = false;
+
   const handleChange = (index, value) => {
     const newCode = [...code];
     //Handle pasted content
     if (value.length > 1) {
-      const pastedCode = value.slice(0, 6).split('');
+      const pastedCode = value.slice(0, 6).trim().split('');
+
+      console.log(pastedCode);
+
       for (let i = 0; i < 6; i++) {
         newCode[i] = pastedCode[i] || '';
       }
