@@ -94,8 +94,8 @@ export const login = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) {
       return res
-        .status(404)
-        .json({ success: false, message: 'User not found!' });
+        .status(400)
+        .json({ success: false, message: 'Invalid credentials' });
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
@@ -132,14 +132,12 @@ export const forgotPassword = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(400).json({ success: false, message: 'Invalid Credentials!' });
+      res.status(400).json({ success: false, message: 'User not found!' });
     }
 
     //Generate reset token
     const resetToken = crypto.randomBytes(20).toString('hex');
     const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000; //1hour
-
-    console.log(resetToken);
 
     user.resetPasswordToken = resetToken;
     user.resetPasswordExpiresAt = resetTokenExpiresAt;
