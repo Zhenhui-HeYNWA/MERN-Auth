@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PasswordStrengthMeter from '../components/PasswordStrengthMeter';
 import { useAuthStore } from '../store/authStore';
-import Input from '../components/input';
+import InputComponent from '../components/InputComponent';
 
 const SignUpPage = () => {
   const [name, setName] = useState('');
@@ -35,21 +35,21 @@ const SignUpPage = () => {
           Create Account
         </h2>
         <form onSubmit={handleSignUp}>
-          <Input
+          <InputComponent
             icon={User}
             type='text'
             placeholder='Full name'
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <Input
+          <InputComponent
             icon={Mail}
             type='email'
             placeholder='Email address'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Input
+          <InputComponent
             icon={Lock}
             type='password'
             placeholder='Password'

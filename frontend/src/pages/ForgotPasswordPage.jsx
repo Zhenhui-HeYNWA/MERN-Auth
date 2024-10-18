@@ -4,7 +4,7 @@ import { useAuthStore } from '../store/authStore';
 
 import { ArrowLeft, Loader, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Input from '../components/input';
+import InputComponent from '../components/InputComponent';
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
@@ -35,7 +35,7 @@ const ForgotPasswordPage = () => {
               Enter your email address and we'll send you a link to reset your
               password.
             </p>
-            <Input
+            <InputComponent
               icon={Mail}
               type='email'
               placeholder='Email Address'

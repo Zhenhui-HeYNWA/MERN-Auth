@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuthStore } from '../store/authStore';
 import { useNavigate, useParams } from 'react-router-dom';
-import Input from '../components/input';
+import InputComponent from '../components/InputComponent';
 import { Lock } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -50,7 +50,7 @@ const ResetPasswordPage = () => {
         {message && <p className='text-gray-500 text-sm mb-4'>{message}</p>}
 
         <form onSubmit={handleSubmit}>
-          <Input
+          <InputComponent
             icon={Lock}
             type='password'
             placeholder='New password'
@@ -58,7 +58,7 @@ const ResetPasswordPage = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Input
+          <InputComponent
             icon={Lock}
             type='password'
             placeholder='Confirm new password'

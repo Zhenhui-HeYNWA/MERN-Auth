@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Loader } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Input from '../components/input';
+import InputComponent from '../components/InputComponent';
 import { useAuthStore } from '../store/authStore';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -25,14 +25,14 @@ const LoginPage = () => {
           Welcome Back
         </h2>
         <form onSubmit={handleLogin}>
-          <Input
+          <InputComponent
             icon={Mail}
             type='email'
             placeholder='Email Address'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Input
+          <InputComponent
             icon={Lock}
             type='password'
             placeholder='Password'
