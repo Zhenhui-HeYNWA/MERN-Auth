@@ -4,7 +4,9 @@
   "description": "",
   "main": "backend/index.js",
   "scripts": {
-    "dev": "nodemon --watch .env backend/index.js"
+    "dev": "nodemon --watch .env backend/index.js",
+    "start":"node backend/index.js",
+    "build":"npm build"
   },
   "keywords": [],
   "author": "",
