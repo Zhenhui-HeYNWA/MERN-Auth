@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API_URL =
   import.meta.env.MODE == 'development'
-    ? 'http //localhost:5001/api/auth'
+    ? 'http://localhost:5001/api/auth'
     : '/api/auth';
 axios.defaults.withCredentials = true;
 export const useAuthStore = create((set) => ({
@@ -145,6 +145,30 @@ export const useAuthStore = create((set) => ({
       set({
         isLoading: false,
         error: error.response.data.message || 'Error resetting password',
+      });
+      throw error;
+    }
+  },
+
+  deleteUser: async (email) => {
+    set({ isLoading: true, error: null });
+    console.log(email);
+
+    try {
+      const response = await axios.post(`${API_URL}/deleteUser`, {
+        email,
+      });
+      set({
+        message: response.data.message,
+        user: null,
+        isAuthenticated: false,
+        error: null,
+        isLoading: false,
+      });
+    } catch (error) {
+      set({
+        isLoading: false,
+        error: error.response.data.message || 'Error delete user',
       });
       throw error;
     }

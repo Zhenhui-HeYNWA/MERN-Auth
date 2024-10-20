@@ -1,11 +1,19 @@
 import { motion } from 'framer-motion';
 import { useAuthStore } from '../store/authStore';
 import { formateDate } from '../utils/date';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 const DashboardPage = () => {
-  const { user, logout } = useAuthStore();
-
+  const { user, logout, deleteUser } = useAuthStore();
+  const navigate = useNavigate();
   const handleLogout = () => {
     logout();
+  };
+
+  const handleDelete = () => {
+    deleteUser(user.email);
+    toast.success('User delete successfully');
+    navigate('/signup');
   };
   return (
     <motion.div
@@ -66,6 +74,15 @@ const DashboardPage = () => {
           className='w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-emerald-700 
           focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900'>
           Logout
+        </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleDelete}
+          className=' mt-2 w-full py-3 px-4 bg-gradient-to-r from-red-600 to-rose-700 text-white font-bold rounded-lg shadow-lg hover:from-red-600 hover:to-rose-700 
+          focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900'>
+          Delete User
         </motion.button>
       </motion.div>
     </motion.div>

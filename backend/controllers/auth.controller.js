@@ -213,3 +213,16 @@ export const checkAuth = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    const email = req.body;
+    console.log(email, 'Email');
+    res.clearCookie('token');
+    await User.findOneAndDelete(email);
+    res.status(200).json({ message: 'User delete successfully' });
+  } catch (error) {
+    console.log('Error in Delete User', error);
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
